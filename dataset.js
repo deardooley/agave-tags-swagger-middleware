@@ -12,7 +12,7 @@ function AGAVE() {
 		apis: [ 'apps','transfers','systems','jobs','tenants','transforms','usageTrigger','profiles','notifications','files','monitors','metadata','schemata', 'internalUsername', 'postits', 'monitorCheck' ],
 
 		apps: function(resourceId) {
-			return 'http://agave.iplantc.org/apps/v2/' + faker.lorem.sentence(1) + '-1.1.3';
+			return 'http://agave.iplantc.org/apps/v2/' + faker.lorem.sentence(1).replace(/ /g, '-') + '-1.1.3';
 		},
 
 		transfers: function(resourceId) {
@@ -20,7 +20,7 @@ function AGAVE() {
 		},
 
 		systems: function(resourceId) {
-			return 'http://agave.iplantc.org/systems/v2/' + faker.lorem.sentence(1);
+			return 'http://agave.iplantc.org/systems/v2/' + faker.lorem.sentence(1).replace(/ /g, '-');
 		},
 
 		jobs: function(resourceId) {
@@ -50,10 +50,10 @@ function AGAVE() {
 		files: function(resourceId) {
 			return 'http://agave.iplantc.org/files/v2/media/system/' +
 							faker.helpers.slugify(faker.lorem.sentence(3)) + '/' +
-							faker.lorem.sentence(1) + '/' +
-							faker.lorem.sentence(1) + '/' +
-							faker.lorem.sentence(1) + '/' +
-							faker.lorem.sentence(1) + '.jpg';
+							faker.lorem.word() + '/' +
+							faker.lorem.word() + '/' +
+							faker.lorem.word() + '/' +
+							faker.lorem.word() + '.jpg';
 		},
 
 		monitors: function(resourceId) {
@@ -73,7 +73,7 @@ function AGAVE() {
 		},
 
 		postits: function(resourceId) {
-			return 'http://agave.iplantc.org/postits/v2/' + faker.lorem.sentence(1);
+			return 'http://agave.iplantc.org/postits/v2/' + faker.lorem.sentence(1).replace(/ /g, '-');
 		},
 
 		monitorCheck: function(resourceId) {
@@ -120,7 +120,7 @@ MockDataset.generate = function() {
 	  {
 	    // var resourceId = uuid.v1();
 	    var resourceId = j;
-			var resourceType = faker.random.array_element(agave.apis);
+			var resourceType = 'files';//faker.random.array_element(agave.apis);
 			var taggedResource = {
 	      uuid: resourceId,
 	      _links: {

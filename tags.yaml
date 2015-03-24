@@ -751,6 +751,8 @@ definitions:
   TagSummary:
     type: object
     description: Tag object without resource list
+    required:
+      - name
     properties:
       name:
         description: name of tag
@@ -766,6 +768,9 @@ definitions:
   Tag:
     type: object
     description: Base tag object
+    required:
+      - id
+      - name
     properties:
       id:
         description: uuid of this tag
@@ -823,6 +828,8 @@ definitions:
   TagResource:
     type: object
     description: Individual tag resource
+    required:
+      - uuid
     properties:
       uuid:
         description: uuid of the referenced resource
@@ -864,19 +871,13 @@ definitions:
   TagPermission:
     type: object
     description: Individual tag permission
+    required:
+      - username
+      - permission
     properties:
       permission:
         description: Name of the queue used to identify it. Names are unique to a system.
         type: string
-        enum:
-          - READ
-          - WRITE
-          - EXECUTE
-          - READ_WRITE
-          - READ_EXECUTE
-          - WRITE_EXECUTE
-          - ALL
-          - NONE
       username:
         description: Username to which the permission applies
         type: string

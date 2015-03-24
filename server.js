@@ -7,7 +7,8 @@
 // Set the DEBUG environment variable to enable debug output of Swagger Middleware AND Swagger Parser
 process.env.DEBUG = 'swagger:*';
 
-var util            = require('util'),
+var _               = require('lodash'),
+    util            = require('util'),
     path            = require('path'),
     express         = require('express'),
     swagger         = require('swagger-express-middleware'),
@@ -17,7 +18,7 @@ var util            = require('util'),
     MemoryDataStore = swagger.MemoryDataStore,
     FileDataStore   = swagger.FileDataStore,
     Resource        = swagger.Resource,
-    _dataset         = require("./dataset.js");
+    _dataset        = require("./dataset.js");
 
 
 var app = express();
@@ -46,11 +47,11 @@ middleware.init('tags.yaml', function(err) {
         middleware.files(),
         middleware.CORS(),
         middleware.parseRequest(),
-        middleware.validateRequest(),
-        middleware.mock(myDB)
+        middleware.validateRequest()
+        // middleware.mock(myDB)
     );
 
-    // Add custom middleware
+    // // Add custom middleware
     // app.patch('/tags/:tagId', function(req, res, next) {
     //     if (req.body.id !== req.params.tagId) {
     //         // The pet's name has changed, so change its URL.
@@ -75,10 +76,54 @@ middleware.init('tags.yaml', function(err) {
     //         next();
     //     }
     // });
+
+    app.get('/tags/:tagId/resources', function(req, res, next) {
+      myDB.getCollection('/tags/' + req.params.tagId + '/resources', function(err, resources) {
+        res.json({
+            status: 'success',
+            message: '',
+            version: '0.1.0',
+            result: _.pluck(resources, 'data')
+        });
+      });
+    });
+
+    app.get('/tags/:tagId/resources/:uuid', function(req, res, next) {
+      myDB.get('/tags/' + req.params.tagId + '/resources/' + req.params.uuid, function(err, resources) {
+        res.json({
+            status: 'success',
+            message: '',
+            version: '0.1.0',
+            result: resources.data
+        });
+      });
+    });
+
+    app.get('/tags/:tagId/pems', function(req, res, next) {
+      myDB.getCollection('/tags/' + req.params.tagId + '/pems', function(err, resources) {
+        res.json({
+            status: 'success',
+            message: '',
+            version: '0.1.0',
+            result: _.pluck(resources, 'data')
+        });
+      });
+    });
+
+    app.get('/tags/:tagId/pems/:username', function(req, res, next) {
+      myDB.get('/tags/' + req.params.tagId + '/pems/' + req.params.username, function(err, resources) {
+        res.json({
+            status: 'success',
+            message: '',
+            version: '0.1.0',
+            result: resources.data
+        });
+      });
+    });
     //
     // // The mock middleware will use our custom data store,
     // // which we already pre-populated with mock data
-    // app.use(middleware.mock(myDB));
+    app.use(middleware.mock(myDB));
 
     // Add a custom error handler that returns errors as HTML
     app.use(function(err, req, res, next) {
