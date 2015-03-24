@@ -50,10 +50,10 @@ function AGAVE() {
 		files: function(resourceId) {
 			return 'http://agave.iplantc.org/files/v2/media/system/' +
 							faker.helpers.slugify(faker.lorem.sentence(3)) + '/' +
-							faker.lorem.word() + '/' +
-							faker.lorem.word() + '/' +
-							faker.lorem.word() + '/' +
-							faker.lorem.word() + '.jpg';
+							faker.lorem.words(1) + '/' +
+							faker.lorem.words(1) + '/' +
+							faker.lorem.words(1) + '/' +
+							faker.lorem.words(1) + '.jpg';
 		},
 
 		monitors: function(resourceId) {
@@ -120,7 +120,7 @@ MockDataset.generate = function() {
 	  {
 	    // var resourceId = uuid.v1();
 	    var resourceId = j;
-			var resourceType = 'files';//faker.random.array_element(agave.apis);
+			var resourceType = faker.random.array_element(agave.apis);
 			var taggedResource = {
 	      uuid: resourceId,
 	      _links: {
