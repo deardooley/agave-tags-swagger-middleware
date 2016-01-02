@@ -16,6 +16,50 @@ paths:
       description: The Systems endpoint returns summary information about the available list of tags right now.
       tags:
         - Tag
+      parameters:
+        - name: name
+          in: query
+          description: Name of the tag for which to search
+          required: false
+          type: string
+        - name: resourceType
+          in: query
+          description: Search for tags associated with one or resources of named type
+          required: false
+          type: string
+        - name: resourceId
+          in: query
+          description: Id of tagged resource
+          required: false
+          type: string
+        - name: lastModified
+          in: query
+          description: Date at which tag was modified in ISO8601 format
+          required: false
+          type: string
+        - name: created
+          in: query
+          description: Date at which tag was created in ISO8601 format
+          required: false
+          type: string
+        - name: naked
+          in: query
+          description: If true return only the payload, not the standard response wrapper
+          required: false
+          type: boolean
+          default: true
+        - name: limit
+          in: query
+          description: Maximum number of responses. Default 100
+          required: false
+          type: integer
+          default: 100
+        - name: offset
+          in: query
+          description: Number of results to skip by default
+          required: false
+          type: integer
+          default: 0
       responses:
         '200':
           description: An array of tags
@@ -53,6 +97,12 @@ paths:
           required: true
           schema:
             $ref: '#/definitions/Tag'
+        - name: naked
+          in: query
+          description: If true return only the payload, not the standard response wrapper
+          required: false
+          type: boolean
+          default: true
       responses:
         '200':
           description: An array of tags
@@ -91,6 +141,12 @@ paths:
           description: Unique id of the tag
           required: true
           type: string
+        - name: naked
+          in: query
+          description: If true return only the payload, not the standard response wrapper
+          required: false
+          type: boolean
+          default: true
       responses:
         '200':
           description: Tag details
@@ -135,6 +191,12 @@ paths:
           required: true
           schema:
             $ref: '#/definitions/Tag'
+        - name: naked
+          in: query
+          description: If true return only the payload, not the standard response wrapper
+          required: false
+          type: boolean
+          default: true
       responses:
         '200':
           description: Tag details
@@ -170,6 +232,12 @@ paths:
           description: Unique id of the tag
           required: true
           type: string
+        - name: naked
+          in: query
+          description: If true return only the payload, not the standard response wrapper
+          required: false
+          type: boolean
+          default: true
       responses:
         '200':
           description: Tag details
@@ -207,6 +275,24 @@ paths:
           description: Unique id of the tag
           required: true
           type: string
+        - name: naked
+          in: query
+          description: If true return only the payload, not the standard response wrapper
+          required: false
+          type: boolean
+          default: true
+        - name: limit
+          in: query
+          description: Maximum number of responses. Default 100
+          required: false
+          type: integer
+          default: 100
+        - name: offset
+          in: query
+          description: Number of results to skip by default
+          required: false
+          type: integer
+          default: 0
       responses:
         '200':
           description: Tag events
@@ -244,6 +330,24 @@ paths:
           description: Unique id of the tag
           required: true
           type: string
+        - name: naked
+          in: query
+          description: If true return only the payload, not the standard response wrapper
+          required: false
+          type: boolean
+          default: true
+        - name: limit
+          in: query
+          description: Maximum number of responses. Default 100
+          required: false
+          type: integer
+          default: 100
+        - name: offset
+          in: query
+          description: Number of results to skip by default
+          required: false
+          type: integer
+          default: 0
       responses:
         '200':
           description: Tag details
@@ -288,6 +392,12 @@ paths:
           required: true
           schema:
             $ref: '#/definitions/TagResource'
+        - name: naked
+          in: query
+          description: If true return only the payload, not the standard response wrapper
+          required: false
+          type: boolean
+          default: true
       responses:
         '200':
           description: Tag resources
@@ -324,6 +434,12 @@ paths:
           description: Unique id of the tag
           required: true
           type: string
+        - name: naked
+          in: query
+          description: If true return only the payload, not the standard response wrapper
+          required: false
+          type: boolean
+          default: true
       responses:
         '200':
           description: Empty response
@@ -366,6 +482,12 @@ paths:
           description: Unique id of a resource
           required: true
           type: string
+        - name: naked
+          in: query
+          description: If true return only the payload, not the standard response wrapper
+          required: false
+          type: boolean
+          default: true
       responses:
         '200':
           description: Tag details
@@ -415,6 +537,12 @@ paths:
           required: false
           schema:
             $ref: '#/definitions/TagResource'
+        - name: naked
+          in: query
+          description: If true return only the payload, not the standard response wrapper
+          required: false
+          type: boolean
+          default: true
       responses:
         '200':
           description: Tag details
@@ -456,6 +584,12 @@ paths:
           description: UUID of the resource to delete
           required: true
           type: string
+        - name: naked
+          in: query
+          description: If true return only the payload, not the standard response wrapper
+          required: false
+          type: boolean
+          default: true
       responses:
         '200':
           description: Empty response
@@ -493,6 +627,24 @@ paths:
           description: Unique id of the system
           required: true
           type: string
+        - name: naked
+          in: query
+          description: If true return only the payload, not the standard response wrapper
+          required: false
+          type: boolean
+          default: true
+        - name: limit
+          in: query
+          description: Maximum number of responses. Default 100
+          required: false
+          type: integer
+          default: 100
+        - name: offset
+          in: query
+          description: Number of results to skip by default
+          required: false
+          type: integer
+          default: 0
       responses:
         '200':
           description: Current Status of the system
@@ -538,6 +690,12 @@ paths:
           required: true
           schema:
             $ref: '#/definitions/TagPermission'
+        - name: naked
+          in: query
+          description: If true return only the payload, not the standard response wrapper
+          required: false
+          type: boolean
+          default: true
       responses:
         '200':
           description: Tag details
@@ -574,6 +732,12 @@ paths:
           description: Unique id of the tag
           required: true
           type: string
+        - name: naked
+          in: query
+          description: If true return only the payload, not the standard response wrapper
+          required: false
+          type: boolean
+          default: true
       responses:
         '200':
           description: Empty response
@@ -613,6 +777,12 @@ paths:
           description: Valid username
           required: true
           type: string
+        - name: naked
+          in: query
+          description: If true return only the payload, not the standard response wrapper
+          required: false
+          type: boolean
+          default: true
       responses:
         '200':
           description: The user permission on this tag
@@ -666,6 +836,12 @@ paths:
           required: true
           schema:
             $ref: '#/definitions/TagPermission'
+        - name: naked
+          in: query
+          description: If true return only the payload, not the standard response wrapper
+          required: false
+          type: boolean
+          default: true
       responses:
         '200':
           description: Tag details
@@ -708,6 +884,12 @@ paths:
           description: Username to revoke permission
           required: true
           type: string
+        - name: naked
+          in: query
+          description: If true return only the payload, not the standard response wrapper
+          required: false
+          type: boolean
+          default: true
       responses:
         '200':
           description: Empty response
